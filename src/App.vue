@@ -4,10 +4,10 @@
       <div class="sports-logo-container">
       </div>
       <div class="sports-menu-container">
-        <div class="sports-menu-item">产品介绍</div>
-        <div class="sports-menu-item">新闻文章</div>
-        <div class="sports-menu-item">品牌故事</div>
-        <div class="sports-menu-item">联系我们</div>
+        <div class="sports-menu-item"
+          v-for="item of menuList"
+          @click="handleGo(item)"
+          :key="item.id">{{item.label}}</div>
       </div>
     </div>
     <div class="main"><router-view/></div>
@@ -30,7 +30,25 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      menuList: [
+        { label: '产品介绍', id: 1, value: '/' },
+        { label: '新闻文章', id: 2, value: '/article/index' },
+        { label: '品牌故事', id: 3, value: '/' },
+        { label: '联系我们', id: 4, value: '/contact' }
+      ]
+    }
+  },
+  methods: {
+    handleGo (item) {
+      this.$router.push({
+        path: item.value
+      })
+    }
+  },
+  created () {}
 }
 </script>
 
