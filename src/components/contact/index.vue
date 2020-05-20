@@ -3,12 +3,6 @@
     <div class="banner-container">
       <img src="../../assets/images/banner.jpeg" />
       <div class="banner-masker"></div>
-      <div class="banner-detail">
-        <div class="banner-title">Finland International Ski Resort</div>
-        <div class="banner-sub_title">Give your professional chemistry know
-work report results data collation</div>
-        <div class="banner-btn">see details</div>
-      </div>
     </div>
     <div class="contact-container">
       <div class="contact-title">联系我们</div>
