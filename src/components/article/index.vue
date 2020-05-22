@@ -1,7 +1,8 @@
 <template>
   <div class="basic-container">
     <div class="search-container">
-      <input placeholder="搜索文章标题、内容" v-model="form.searchName"/>
+      <el-input v-model="form.searchName" placeholder="搜索文章标题、内容"></el-input>
+      <!-- <input placeholder="搜索文章标题、内容" v-model="form.searchName"/> -->
     </div>
     <div class="hot-article-container">
       <div class="hot-article_image">
