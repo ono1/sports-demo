@@ -4,6 +4,7 @@ import Home from '@/components/home' // 首页
 import ArticleIndex from '@/components/article/index' // 文章页
 import ArticleList from '@/components/article/list' // 文章列表
 import ArticleDetail from '@/components/article/detail' // 文章详情
+import ProductList from '@/components/product/list' // 产品列表
 import ProductDetail from '@/components/product/detail' // 产品详情
 import Brand from '@/components/brand/index' // 品牌故事
 import Contact from '@/components/contact/index' // 联系我们
@@ -31,6 +32,11 @@ export default new Router({
       path: '/article/detail',
       name: 'articleDetail',
       component: ArticleDetail
+    },
+    {
+      path: '/product/list',
+      name: 'ProductList',
+      component: ProductList
     },
     {
       path: '/product/detail',

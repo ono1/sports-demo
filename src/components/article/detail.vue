@@ -11,12 +11,31 @@
 </template>
 
 <script>
+import Api from '@/utils/api'
+
 export default {
   data () {
     return {
     }
   },
-  methods: {},
-  created () {}
+  methods: {
+    getDetail () {
+      let params = {
+        id: this.$route.query.id
+      }
+      Api.productDetail(params)
+        .then(res => {
+          let { code, msg, data } = res
+          if (code === 1) {
+            console.log('文章详情', data)
+          } else {
+            this.$message.error(msg)
+          }
+        })
+    }
+  },
+  created () {
+    this.getDetail()
+  }
 }
 </script>

@@ -11,14 +11,6 @@ if (window.location.hostname === 'localhost') {
 // console.log('最终host', host)
 
 export function fetch (opt) {
-  // let authorization = ''
-  // if (sessionStorage.getItem('token') !== '') {
-  //   authorization = `${sessionStorage.token}`
-  // }
-  // if (opt.url.indexOf('login') > -1) {
-  //   sessionStorage.setItem('token', '')
-  //   authorization = ''
-  // }
   let ContentType = 'application/x-www-form-urlencoded'
   if (opt.ContentType) {
     ContentType = 'application/json;charset=UTF-8'
@@ -28,16 +20,12 @@ export function fetch (opt) {
     url: `${host}` + opt.url,
     headers: {
       'Content-Type': ContentType
-      // 'Authorization': authorization
     }
   }
   if (['post', 'put'].includes(opt.method)) {
     opt.ContentType ? dataList.data = opt.data : dataList.data = qs.stringify(opt.data)
   } else {
     dataList.params = opt.data
-    if (dataList.params) {
-      dataList.params['token'] = authorization
-    }
   }
   return new Promise((resolve, reject) => {
     axios(dataList)
@@ -57,14 +45,16 @@ axios.interceptors.request.use(config => {
 
 // 返回相应请求后处理数据
 axios.interceptors.response.use(res => {
-  // if (res.data.token) {
-  //   sessionStorage.setItem('token', res.data.token)
-  // }
   return res
 }, error => {
   return Promise.reject(error)
 })
 
 export default {
-  login (data) { return fetch({ method: 'post', url: '/api/account/login', data }) }, // 测试
+  bannerList (data) { return fetch({ method: 'get', url: '/api/wxapp.index/banner', data }) }, // banner
+  tabList (data) { return fetch({ method: 'get', url: '/api/wxapp.index/taball', data }) }, // tag列表
+  recommendList (data) { return fetch({ method: 'get', url: '/api/wxapp.archives/recommend', data }) }, // 推荐文章/产品
+  list (data) { return fetch({ method: 'get', url: '/api/wxapp.archives/index', data }) }, // 文章/产品列表
+  productDetail (data) { return fetch({ method: 'get', url: '/api/wxapp.archives/detail', data }) }, // 文章/产品详情
+  contactUs (data) { return fetch({ method: 'get', url: '/api/wxapp.index/page', data }) } // 品牌故事/联系我们
 }

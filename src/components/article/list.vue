@@ -2,31 +2,74 @@
   <div class="basic-container">
     <div class="article-list_container">
       <div class="article-item"
-        v-for="item of 8"
-        :key="item">
-        <img src="../../assets/images/banner.jpeg" class="article-image" />
+        v-for="item of list"
+        :key="item.id"
+         @click="handleGoDetail(item)">
+        <img :src="item.image" class="article-image" />
         <div class="flex1 article_info">
           <div class="article_title">
-            2020年滑雪届最值得期待的赛事
+            {{item.title}}
           </div>
-          <div class="article_date">2020/03/13 11:34</div>
+          <div class="article_date">{{item.create_date}}</div>
           <div class="article_detail">
-            世界高山滑雪锦标赛是由国际滑雪联合会组织的一项世界性赛事，高山滑雪是以滑雪板和滑雪杖为工具在山坡专设的线路上快速回转、滑降的一种雪上竞赛项目。高山滑雪诞生于1907年，1924年被纳入国际滑雪联合会。1931年第一届高山滑雪锦标赛在瑞士米伦举行…
+            {{item.description}}
           </div>
           <div class="article_btn">查看详情</div>
         </div>
       </div>
     </div>
+    <div class="pages-container">
+      <div class="more" @click="handleMore">查看所有文章</div>
+    </div>
   </div>
 </template>
 
 <script>
+import Api from '@/utils/api'
+
 export default {
   data () {
     return {
+      list: [],
+      page: 1
     }
   },
-  methods: {},
-  created () {}
+  methods: {
+    // 获取文章列表
+    getArticleList () {
+      let params = {
+        page: this.page,
+        model: 1
+      }
+      Api.list(params)
+        .then(res => {
+          let { code, msg, data } = res
+          if (code === 1) {
+            this.list = data.archivesList
+          } else {
+            this.$message.error(msg)
+          }
+        })
+    },
+
+    // 跳转到详情
+    handleGoDetail (item) {
+      this.$router.push({
+        path: '/article/detail',
+        query: {
+          id: item.id
+        }
+      })
+    },
+
+    // 获取更多
+    handleMore () {
+      this.page++
+      this.getArticleList()
+    }
+  },
+  created () {
+    this.getArticleList()
+  }
 }
 </script>

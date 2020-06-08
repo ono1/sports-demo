@@ -10,7 +10,7 @@
           :key="item.id">{{item.label}}</div>
       </div>
     </div>
-    <div class="main"><router-view/></div>
+    <div class="main"><router-view /></div>
     <div class="bottom-container">
       <div class="contact-info">
         <div>联系我们</div>
