@@ -7,13 +7,13 @@
         @click="handleGo(item)">
         <img :src="item.image" />
         <div class="product-title">{{item.title}}</div>
-        <div class="product-info">{{item.keywords}}</div>
-        <div class="product-price">¥1425</div>
+        <div class="product-info">{{item.param}}</div>
+        <div class="product-price">¥{{item.price}}</div>
       </div>
     </div>
     <div class="pages-container">
-      <div>共333件</div>
-      <div class="more" @click="handleMore()">加载更多商品</div>
+      <div>共{{nums}}件</div>
+      <div class="more" @click="handleMore()" v-show="page < page_count">加载更多商品</div>
     </div>
   </div>
 </template>
@@ -24,7 +24,10 @@ import Api from '@/utils/api'
 export default {
   data () {
     return {
-      productList: []
+      productList: [],
+      page: 1, // 当前页
+      page_count: 0, // 总页数
+      nums: 0 // 总个数
     }
   },
   methods: {
@@ -43,11 +46,25 @@ export default {
             } else {
               this.productList = data.archivesList
             }
+            this.page_count = data.page_count // 总页数
+            this.nums = data.nums // 总个数
           } else {
             this.$message.error(msg)
           }
         })
     },
+
+    // 跳转到产品详情
+    handleGo (item) {
+      this.$router.push({
+        path: '/product/detail',
+        query: {
+          id: item.id
+        }
+      })
+    },
+
+    // 加载更多
     handleMore () {
       this.page++
       this.getList()

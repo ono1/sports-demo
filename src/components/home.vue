@@ -36,10 +36,10 @@
       <div class="popular-info">
         <div>人气单品</div>
         <div class="popular-title">{{archives.title}}</div>
-        <div class="popular-detail">{{archives.description}}</div>
-        <div>板长</div>
-        <div class="popular-panel">{{archives.keywords}}</div>
-        <div class="popular-btn" @click="handleGo()">查看详情</div>
+        <div class="popular-detail">{{archives.brief}}</div>
+        <div>{{archives.seotitle}}</div>
+        <div class="popular-panel">{{archives.param}}</div>
+        <div class="popular-btn" @click="handleGo(archives)">查看详情</div>
       </div>
     </div>
     <div class="product-container">
@@ -49,12 +49,12 @@
         @click="handleGo(item)">
         <img :src="item.image" />
         <div class="product-title">{{item.title}}</div>
-        <div class="product-info">{{item.keywords}}</div>
-        <div class="product-price">¥1425</div>
+        <div class="product-info">{{item.param}}</div>
+        <div class="product-price">¥{{item.price}}</div>
       </div>
     </div>
     <div class="pages-container">
-      <div>共333件</div>
+      <div>共{{nums}}件</div>
       <div class="more" @click="handleGoList">加载更多商品</div>
     </div>
     <div></div>
@@ -76,6 +76,8 @@ export default {
       currentCategorySubId: '', // 当前选中二级分类ID
       archives: {}, // 人气单品列表
       page: 1,
+      page_count: 0, // 总页数
+      nums: 0, // 总个数
       productList: []
     }
   },
@@ -140,14 +142,20 @@ export default {
     getList () {
       let params = {
         model: 2,
-        page: this.page
+        page: this.page,
+      }
+      if (this.currentCategorySubId) {
+        params.channel = this.currentCategorySubId
+      } else {
+        params.channel = this.currentCategoryParentId
       }
       Api.list(params)
         .then(res => {
           let { code, msg, data } = res
           if (code === 1) {
-            this.productList = data.archivesList
-            console.log('产品列表', data)
+            this.productList = data.archivesList // 列表
+            this.page_count = data.page_count // 总页数
+            this.nums = data.nums // 总个数
           } else {
             this.$message.error(msg)
           }
@@ -171,6 +179,7 @@ export default {
       } else {
         this.currentCategorySubId = item.id
       }
+      this.getList()
     },
 
     // 跳转到产品详情
@@ -178,7 +187,7 @@ export default {
       this.$router.push({
         path: '/product/detail',
         query: {
-          id: item
+          id: item.id
         }
       })
     },

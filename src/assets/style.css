@@ -156,7 +156,6 @@ html, body {
 }
 .product-item img {
   width: 100%;
-  height: 190px;
   border: 1px dashed #333333;
   margin-bottom: 5px;
 }
@@ -294,6 +293,9 @@ html, body {
 .product-detail_size, .product-detail_hint, .product-detail_star_text {
   font-size: 14px;
   color: #666666;
+}
+.product-detail_star_text {
+  margin-top: 5px;
 }
 .product-detail_price {
   font-size: 35px;

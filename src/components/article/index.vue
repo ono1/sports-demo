@@ -22,7 +22,7 @@
           </div>
           <div class="article_date">{{item.create_date}}</div>
           <div class="article_detail">
-            {{item.description}}
+            {{item.brief}}
           </div>
           <div class="article_btn" @click="handleGoDetail(item)">查看详情</div>
         </div>
@@ -43,7 +43,7 @@
           </div>
           <div class="article_date">{{item.create_date}}</div>
           <div class="article_detail">
-            {{item.description}}
+            {{item.brief}}
           </div>
           <div class="article_btn" @click="handleGoDetail(item)">查看详情</div>
         </div>
@@ -77,7 +77,6 @@ export default {
         .then(res => {
           let { code, msg, data } = res
           if (code === 1) {
-            console.log('&&&&&&', data)
             this.archivesList = data.archivesList
           } else {
             this.$message.error(msg)

@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="pages-container">
-      <div class="more" @click="handleMore">查看所有文章</div>
+      <div class="more" @click="handleMore" v-show="page < page_count">查看所有文章</div>
     </div>
   </div>
 </template>
@@ -31,7 +31,9 @@ export default {
   data () {
     return {
       list: [],
-      page: 1
+      page: 1,
+      page_count: 0, // 总页数
+      nums: 0 // 总个数
     }
   },
   methods: {
@@ -46,6 +48,8 @@ export default {
           let { code, msg, data } = res
           if (code === 1) {
             this.list = data.archivesList
+            this.page_count = data.page_count // 总页数
+            this.nums = data.nums // 总个数
           } else {
             this.$message.error(msg)
           }
@@ -65,6 +69,10 @@ export default {
     // 获取更多
     handleMore () {
       this.page++
+      if (this.page > this.page_count) {
+        this.page = this.page_count
+        return
+      }
       this.getArticleList()
     }
   },
