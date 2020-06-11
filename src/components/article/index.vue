@@ -1,7 +1,15 @@
 <template>
   <div class="basic-container">
     <div class="search-container">
-      <el-input v-model="form.searchName" placeholder="搜索文章标题、内容"></el-input>
+      <el-row>
+        <el-col :span="20">
+          <el-input v-model="title" placeholder="搜索文章标题、内容"></el-input>
+        </el-col>
+        <el-col :span="1">&nbsp;</el-col>
+        <el-col :span="3">
+            <el-button round @click="handleSearch()">搜索</el-button>
+        </el-col>
+      </el-row>
       <!-- <input placeholder="搜索文章标题、内容" v-model="form.searchName"/> -->
     </div>
     <div class="category-tags">
@@ -58,13 +66,11 @@ import Api from '@/utils/api'
 export default {
   data () {
     return {
-      form: {
-        searchName: ''
-      },
       archivesList: [], // 人气文章
       list: [],
       page: 1,
-      model: 1
+      model: 1,
+      title: ''
     }
   },
   methods: {
@@ -84,11 +90,18 @@ export default {
         })
     },
 
+    handleSearch () {
+      this.page = 1
+      this.list = []
+      this.getArticleList()
+    },
+
     // 获取文章列表
     getArticleList () {
       let params = {
         page: this.page,
-        model: 1
+        model: 1,
+        title: this.title
       }
       Api.list(params)
         .then(res => {

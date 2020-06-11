@@ -142,7 +142,7 @@ export default {
     getList () {
       let params = {
         model: 2,
-        page: this.page,
+        page: this.page
       }
       if (this.currentCategorySubId) {
         params.channel = this.currentCategorySubId

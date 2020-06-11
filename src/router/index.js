@@ -9,6 +9,10 @@ import ProductDetail from '@/components/product/detail' // 产品详情
 import Brand from '@/components/brand/index' // 品牌故事
 import Contact from '@/components/contact/index' // 联系我们
 
+const originalPush = Router.prototype.push
+Router.prototype.push = function push (location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 Vue.use(Router)
 
 export default new Router({
