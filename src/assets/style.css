@@ -380,3 +380,7 @@ ul {
 .el-rate__icon {
   font-size: 30px;
 }
+.article_author {
+  text-align: center;
+  margin-bottom: 20px;
+}

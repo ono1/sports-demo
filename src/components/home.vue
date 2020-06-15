@@ -21,12 +21,12 @@
       <div
         class="tag-item"
         :style="{color: currentCategorySubId === '' ? '#409EFF' : ''}"
-        @click="handleTabChange({id: ''})">全部</div>
+        @click="handleTabTwoChange({id: ''})">全部</div>
       <div class="tag-item"
         :style="{color: item.id === currentCategorySubId ? '#409EFF' : ''}"
         v-for="item of subTabList"
         :key="item.id"
-        @click="handleTabChange(item)">{{item.title}}</div>
+        @click="handleTabTwoChange(item)">{{item.title}}</div>
     </div>
     <div class="popular-container" v-if="archives">
       <div class="popular-image">
@@ -106,7 +106,10 @@ export default {
 
     // 获取tab列表
     getTabList () {
-      Api.tabList()
+      let params = {
+        model: 2
+      }
+      Api.tabList(params)
         .then(res => {
           let { code, msg, data } = res
           if (code === 1) {
@@ -162,26 +165,23 @@ export default {
         })
     },
 
-    // 产品类型改变事件
-    handleChangeType (item) {
-    },
-
     // 一级分类切换事件
     handleTabChange (item) {
-      if (item.parent_id === 0) {
-        this.currentCategoryParentId = item.id
-        this.currentCategorySubId = ''
-        if (item.children) {
-          this.subTabList = item.children
-        } else {
-          this.subTabList = []
-        }
+      this.currentCategoryParentId = item.id
+      this.currentCategorySubId = ''
+      if (item.children) {
+        this.subTabList = item.children
       } else {
-        this.currentCategorySubId = item.id
+        this.subTabList = []
       }
       this.getList()
     },
 
+    // 二级分类
+    handleTabTwoChange (item) {
+      this.currentCategorySubId = item.id
+      this.getList()
+    },
     // 跳转到产品详情
     handleGo (item) {
       this.$router.push({

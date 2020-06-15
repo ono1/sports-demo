@@ -4,6 +4,7 @@
       <img src="../../assets/images/banner.jpeg" />
       <div class="banner-masker"></div>
     </div>
+    <div class="article_author">{{detail.author}}</div>
     <div class="article-detail-container" v-html="detail.content">
     </div>
   </div>

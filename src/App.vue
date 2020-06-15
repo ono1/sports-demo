@@ -104,7 +104,10 @@ export default {
     },
     // 获取tab列表
     getTabList () {
-      Api.tabList()
+      let params = {
+        model: 2
+      }
+      Api.tabList(params)
         .then(res => {
           let { code, msg, data } = res
           if (code === 1) {

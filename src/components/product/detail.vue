@@ -2,7 +2,7 @@
   <div class="basic-container">
     <div class="product-detail_container">
       <div class="product-detail_img">
-        <img src="../../assets/images/2.png" />
+        <img :src="detail.image" />
       </div>
       <div class="flex1 product-detail_info_container">
         <div class="product-detail_title">{{detail.title}}</div>

@@ -11,6 +11,7 @@
             {{item.title}}
           </div>
           <div class="article_date">{{item.create_date}}</div>
+          <div class="article_date">{{item.author}}</div>
           <div class="article_detail">
             {{item.description}}
           </div>
