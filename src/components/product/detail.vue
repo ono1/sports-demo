@@ -2,7 +2,14 @@
   <div class="basic-container">
     <div class="product-detail_container">
       <div class="product-detail_img">
-        <img :src="detail.image" />
+        <el-carousel height="150px">
+          <el-carousel-item
+            v-for="item in detail.imagesList"
+            :key="item">
+            <img :src="item" />
+          </el-carousel-item>
+        </el-carousel>
+        <!-- <img :src="detail.image" /> -->
       </div>
       <div class="flex1 product-detail_info_container">
         <div class="product-detail_title">{{detail.title}}</div>
@@ -45,7 +52,9 @@ export default {
         .then(res => {
           let { code, msg, data } = res
           if (code === 1) {
-            this.detail = data.archivesInfo
+            let archivesInfo = Object.assign({}, data.archivesInfo)
+            archivesInfo.imagesList = archivesInfo.productdata.split(',')
+            this.detail = archivesInfo
           } else {
             this.$message.error(msg)
           }
