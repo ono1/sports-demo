@@ -2,11 +2,13 @@
   <div class="basic-container">
     <div class="product-detail_container">
       <div class="product-detail_img">
-        <el-carousel height="150px">
+        <el-carousel>
           <el-carousel-item
-            v-for="item in detail.imagesList"
-            :key="item">
-            <img :src="item" />
+            v-for="(item, index) in detail.imagesList"
+            :key="index">
+           <el-image
+            :src="item"
+            fit="scale-down"></el-image>
           </el-carousel-item>
         </el-carousel>
         <!-- <img :src="detail.image" /> -->
@@ -25,12 +27,13 @@
           </el-rate>
         </div>
         <div class="product-detail_star_text">推荐指数{{detail.rmd_rank}}颗星</div>
-        <div class="product-detail_info" v-html="detail.content"></div>
-        <div class="product-detail_hint">{{detail.brief}}</div>
+        <div class="product-detail_info" v-html="detail.brief"></div>
+        <div class="product-detail_hint"></div>
         <div class="product-detail_btn" @click="handleGo">去购买</div>
       </div>
     </div>
-    <div></div>
+    <div v-html="detail.content" class="product-content">
+    </div>
   </div>
 </template>
 

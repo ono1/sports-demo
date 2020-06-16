@@ -8,6 +8,7 @@ import ProductList from '@/components/product/list' // 产品列表
 import ProductDetail from '@/components/product/detail' // 产品详情
 import Brand from '@/components/brand/index' // 品牌故事
 import Contact from '@/components/contact/index' // 联系我们
+import Layout from '@/components/index'
 
 const originalPush = Router.prototype.push
 Router.prototype.push = function push (location) {
@@ -16,46 +17,51 @@ Router.prototype.push = function push (location) {
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/article/index',
-      name: 'articleIndex',
-      component: ArticleIndex
-    },
-    {
-      path: '/article/list',
-      name: 'articleList',
-      component: ArticleList
-    },
-    {
-      path: '/article/detail',
-      name: 'articleDetail',
-      component: ArticleDetail
-    },
-    {
-      path: '/product/list',
-      name: 'ProductList',
-      component: ProductList
-    },
-    {
-      path: '/product/detail',
-      name: 'ProductDetail',
-      component: ProductDetail
-    },
-    {
-      path: '/brand',
-      name: 'brand',
-      component: Brand
-    },
-    {
-      path: '/contact',
-      name: 'Contact',
-      component: Contact
-    }
-  ]
+  routes: [{
+    path: '/',
+    component: Layout,
+    redirect: '/index',
+    children: [
+      {
+        path: 'index',
+        name: 'Home',
+        component: Home
+      },
+      {
+        path: '/article/index',
+        name: 'articleIndex',
+        component: ArticleIndex
+      },
+      {
+        path: '/article/list',
+        name: 'articleList',
+        component: ArticleList
+      },
+      {
+        path: '/article/detail',
+        name: 'articleDetail',
+        component: ArticleDetail
+      },
+      {
+        path: '/product/list',
+        name: 'ProductList',
+        component: ProductList
+      },
+      {
+        path: '/product/detail',
+        name: 'ProductDetail',
+        component: ProductDetail
+      },
+      {
+        path: '/brand',
+        name: 'brand',
+        component: Brand
+      },
+      {
+        path: '/contact',
+        name: 'Contact',
+        component: Contact
+      }
+    ]
+  }]
 })

@@ -381,6 +381,9 @@ ul {
   font-size: 30px;
 }
 .article_author {
-  text-align: center;
   margin-bottom: 20px;
+  text-align: center;
+}
+.product-content {
+  margin: 50px 0;
 }

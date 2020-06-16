@@ -4,7 +4,8 @@
       <img src="../../assets/images/banner.jpeg" />
       <div class="banner-masker"></div>
     </div>
-    <div class="article_author">{{detail.author}}</div>
+    <div class="article-title">{{detail.title}}</div>
+    <div class="article_author">作者: {{detail.author}}</div>
     <div class="article-detail-container" v-html="detail.content">
     </div>
   </div>
@@ -40,3 +41,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.article-title {
+  text-align: center;
+  margin: 50px 0 10px;
+  font-weight: 500;
+  font-size: 20px;
+} 
+</style>

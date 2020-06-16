@@ -35,7 +35,8 @@ export default {
     getList () {
       let params = {
         model: 2,
-        page: this.page
+        page: this.page,
+        channel: this.$route.query.id || ''
       }
       Api.list(params)
         .then(res => {
@@ -71,7 +72,17 @@ export default {
     }
   },
   created () {
+    console.log('chanpinliebiao')
     this.getList()
+  },
+  watch: {
+    '$route' (v) {
+      if (v.path === '/product/list') {
+        this.productList = []
+        this.page = 1
+        this.getList()
+      }
+    }
   }
 }
 </script>
