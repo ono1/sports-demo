@@ -21,14 +21,14 @@
                 <li class="qybox-submenu-item" v-for="child of tabList" :key="child.id">
                   <div
                     class="qybox-menu-icon"
-                    :style="{color: child.id === currentCategoryId ? '#404FF5' : ''}"
+                    :style="{color: child.id === currentCategoryId ? 'rgba(255, 255, 255, .5)' : '#fff'}"
                     @mouseenter="handleToMouseEnter(child)"
                     @click.stop="handleClick(child)">{{child.title}}</div>
                   <ul class="qybox-el-menu--popup">
                     <li
                       v-for="grand of child.children"
                       :key="grand.id"
-                      :style="{color: grand.id === currentCategoryId ? '#404FF5' : ''}"
+                      :style="{color: grand.id === currentCategoryId ? 'rgba(255, 255, 255, .5)' : '#fff'}"
                       @mouseenter="handleToMouseEnter(grand)"
                       @click.stop="handleClick(grand)">{{grand.title}}</li>
                   </ul>
@@ -145,9 +145,9 @@ export default {
   position: absolute;
   top: 56px;
   left: 0;
-  background: #fff;
-  padding: 18px 0 16px 0;
-  color: #000;
+  background: #000000;
+  padding: 30px;
+  color: #fff;
   z-index: 3;
   box-shadow: 0 3px 24px rgba(64, 79, 245, .1);
   display: flex;
@@ -159,13 +159,13 @@ export default {
 .qybox-submenu-item {
   float: left;
   line-height: 20px;
-  padding: 0 17px 0 32px;
+  padding: 0 17px 0 20px;
   position: relative;
   font-size: 12px;
+  border-left: 1px solid #fff;
 }
 .qybox-menu-icon {
   font-size: 14px;
-  border-bottom: 1px solid #ccc;
   padding-bottom: 5px;
 }
 .qybox-el-menu--popup {

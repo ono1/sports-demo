@@ -7,16 +7,18 @@
         </el-carousel-item>
       </el-carousel>
     </div>
-    <div class="hot-container">
-      <div class="hot-item"
-        :style="{'border-color' : item.id === currentCategoryParentId ? '#409EFF' : ''}"
+    <swiper class="swiper" :options="swiperOption" style="height: 400px;">
+      <swiper-slide
         v-for="(item, index) of tabList"
-        :key="index"
-        @click="handleTabChange(item)">
-        <div class="hot-image"><img src="../assets/images/product.png" /></div>
-        <div class="hot-title">{{item.title}}</div>
-      </div>
-    </div>
+        :key="index">
+        <div @click="handleTabChange(item)"
+          :class="{'tab-item': true, 'tab-item-selected': item.id === currentCategoryParentId}">
+          <div class="hot-image"><img src="../assets/images/product.png" /></div>
+          <div class="hot-title">{{item.title}}</div>
+        </div>
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+    </swiper>
     <div class="tags-container">
       <div
         class="tag-item"
@@ -62,6 +64,8 @@
 </template>
 
 <script>
+// import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+// import 'swiper/css/swiper.css'
 import Api from '@/utils/api'
 
 export default {
@@ -78,7 +82,15 @@ export default {
       page: 1,
       page_count: 0, // 总页数
       nums: 0, // 总个数
-      productList: []
+      productList: [],
+      swiperOption: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        }
+      }
     }
   },
   methods: {
@@ -205,5 +217,19 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+.swiper {
+  height: 400px;
+  margin: 20px 0 0;
+}
+.swiper-pagination-bullet-active {
+  background: #000;
+}
+.tab-item {
+  border: 1px dashed #fff;
+}
+.tab-item-selected {
+  border-color: #000;
+}
+
 </style>
