@@ -1,7 +1,7 @@
 <template>
   <div class="basic-container" v-loading="loading">
     <div class="banner-container">
-      <el-carousel>
+      <el-carousel height="550px">
         <el-carousel-item v-for="(item, index) in bannerList" :key="index">
           <img :src="item.image" />
         </el-carousel-item>
@@ -227,6 +227,7 @@ export default {
 }
 .tab-item {
   border: 1px dashed #fff;
+  position: relative;
 }
 .tab-item-selected {
   border-color: #000;
