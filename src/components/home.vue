@@ -3,7 +3,7 @@
     <div class="banner-container">
       <el-carousel height="550px">
         <el-carousel-item v-for="(item, index) in bannerList" :key="index">
-          <img :src="item.image" />
+          <img :src="item.image" style="height: 550px;" />
         </el-carousel-item>
       </el-carousel>
     </div>
