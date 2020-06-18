@@ -49,10 +49,18 @@
         v-for="item of productList"
         :key="item.id"
         @click="handleGo(item)">
-        <img :src="item.image" />
-        <div class="product-title">{{item.title}}</div>
-        <div class="product-info">{{item.param}}</div>
-        <div class="product-price">¥{{item.price}}</div>
+        <div style="padding: 0px 20px 20px;">
+          <div class="product-img">
+            <el-image
+            style="width: 100%; height: 100%;"
+            :src="item.image"
+            fit="scale-down"></el-image>
+            <!-- <img :src="item.image" /> -->
+          </div>
+          <div class="product-title">{{item.title}}</div>
+          <div class="product-info">{{item.param}}</div>
+          <div class="product-price">¥{{item.price}}</div>
+        </div>
       </div>
     </div>
     <div class="pages-container">

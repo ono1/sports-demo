@@ -1,19 +1,32 @@
 <template>
-  <div class="basic-container">
+  <div class="product-wrapper">
     <div class="product-container">
       <div class="product-item"
         v-for="item of productList"
         :key="item.id"
         @click="handleGo(item)">
-        <img :src="item.image" />
-        <div class="product-title">{{item.title}}</div>
-        <div class="product-info">{{item.param}}</div>
-        <div class="product-price">¥{{item.price}}</div>
+        <div style="padding: 20px;">
+          <div class="product-img">
+            <el-image
+            style="width: 100%; height: 100%;"
+            :src="item.image"
+            fit="scale-down"></el-image>
+          </div>
+          <div class="product-title">{{item.title}}</div>
+          <div class="product-info">{{item.param}}</div>
+          <div class="product-price">¥{{item.price}}</div>
+        </div>
       </div>
     </div>
     <div class="pages-container">
-      <div>共{{nums}}件</div>
-      <div class="more" @click="handleMore()" v-show="page < page_count">加载更多商品</div>
+      <el-pagination
+        background
+        @current-change="getList"
+        :current-page.sync="page"
+        :page-size="pageSize"
+        layout="total, prev, pager, next"
+        :total="nums">
+      </el-pagination>
     </div>
   </div>
 </template>
@@ -27,7 +40,8 @@ export default {
       productList: [],
       page: 1, // 当前页
       page_count: 0, // 总页数
-      nums: 0 // 总个数
+      nums: 0, // 总个数
+      pageSize: 16
     }
   },
   methods: {
@@ -42,11 +56,7 @@ export default {
         .then(res => {
           let { code, msg, data } = res
           if (code === 1) {
-            if (this.productList.length > 0) {
-              this.productList = [...this.productList, ...data.archivesList]
-            } else {
-              this.productList = data.archivesList
-            }
+            this.productList = data.archivesList || []
             this.page_count = data.page_count // 总页数
             this.nums = data.nums // 总个数
           } else {

@@ -2,15 +2,18 @@
   <div class="basic-container">
     <div class="product-detail_container">
       <div class="product-detail_img">
-        <el-carousel>
-          <el-carousel-item
-            v-for="(item, index) in detail.imagesList"
-            :key="index">
-           <el-image
-            :src="item"
-            fit="scale-down"></el-image>
-          </el-carousel-item>
-        </el-carousel>
+        <div style="max-width: 550px; max-height: 440px;">
+          <el-carousel height="440px">
+            <el-carousel-item
+              v-for="(item, index) in detail.imagesList"
+              :key="index">
+            <!-- <el-image
+              :src="item"
+              fit="scale-down"></el-image> -->
+              <img :src="item"  style="max-width: 550px;max-height: 440px;" />
+            </el-carousel-item>
+          </el-carousel>
+        </div>
         <!-- <img :src="detail.image" /> -->
       </div>
       <div class="flex1 product-detail_info_container">
