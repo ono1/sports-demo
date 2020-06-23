@@ -3,7 +3,11 @@
     <div class="banner-container">
       <el-carousel height="550px">
         <el-carousel-item v-for="(item, index) in bannerList" :key="index">
-          <img :src="item.image" style="height: 550px;" />
+          <el-image
+            style="width: 100%; height: 100%;"
+            :src="item.image"
+            fit="contain"></el-image>
+          <!-- <img :src="item.image" style="height: 550px;" /> -->
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -13,7 +17,13 @@
         :key="index">
         <div @click="handleTabChange(item)"
           :class="{'tab-item': true, 'tab-item-selected': item.id === currentCategoryParentId}">
-          <div class="hot-image"><img src="../assets/images/product.png" /></div>
+          <div class="hot-image">
+            <el-image
+              style="width: 100%; height: 100%;"
+              src="http://test.head.huaxuezoo.com/uploads/20200601/90f7214b64120dfbcdb32738d41596e3.jpg"
+              fit="contain"></el-image>
+            <!-- <img src="../assets/images/product.png" /> -->
+          </div>
           <div class="hot-title">{{item.title}}</div>
         </div>
       </swiper-slide>
@@ -54,7 +64,7 @@
             <el-image
             style="width: 100%; height: 100%;"
             :src="item.image"
-            fit="scale-down"></el-image>
+            fit="contain"></el-image>
             <!-- <img :src="item.image" /> -->
           </div>
           <div class="product-title">{{item.title}}</div>
