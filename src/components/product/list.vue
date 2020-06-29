@@ -5,7 +5,7 @@
         v-for="item of productList"
         :key="item.id"
         @click="handleGo(item)">
-        <div style="padding: 20px;">
+        <div style="padding: 30px;">
           <div class="product-img">
             <el-image
             style="width: 100%; height: 100%;"
@@ -14,7 +14,7 @@
           </div>
           <div class="product-title">{{item.title}}</div>
           <div class="product-info">{{item.param}}</div>
-          <div class="product-price">¥{{item.price}}</div>
+          <!-- <div class="product-price">¥{{item.price}}</div> -->
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
         @current-change="getList"
         :current-page.sync="page"
         :page-size="pageSize"
-        layout="total, prev, pager, next"
+        layout="pager"
         :total="nums">
       </el-pagination>
     </div>

@@ -12,18 +12,15 @@
       </el-row>
       <!-- <input placeholder="搜索文章标题、内容" v-model="form.searchName"/> -->
     </div>
-    <div class="category-tags">
-      <span>生活</span>
-      <span>/</span>
-      <span>滑雪</span>
-      <span>/</span>
-      <span>赛事</span>
-    </div>
     <div class="article-list_container">
       <div class="article-item"
         v-for="item of list"
         :key="item.id">
-        <img :src="item.image" class="article-image" />
+        <el-image
+          :src="item.image"
+          fit="scale-down"
+          style="width: 375px;height: 240px;"></el-image>
+        <!-- <img :src="item.image" class="article-image" /> -->
         <div class="flex1 article_info">
           <div class="article_title">
             {{item.title}}
@@ -44,7 +41,8 @@
       <div class="article-item"
         v-for="item of archivesList"
         :key="item.id">
-        <img :src="item.image" class="article-image" />
+        <el-image :src="item.image" fit="scale-down" style="width: 375px;height: 240px;"></el-image>
+        <!-- <img :src="item.image" class="article-image" /> -->
         <div class="flex1 article_info">
           <div class="article_title">
             {{item.title}}

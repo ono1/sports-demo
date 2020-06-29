@@ -6,7 +6,8 @@
           <el-image
             style="width: 100%; height: 100%;"
             :src="item.image"
-            fit="contain"></el-image>
+            fit="fill"
+            @click="handleJump(item)"></el-image>
           <!-- <img :src="item.image" style="height: 550px;" /> -->
         </el-carousel-item>
       </el-carousel>
@@ -32,8 +33,11 @@
     <div class="tags-container">
       <div
         class="tag-item"
-        :style="{color: currentCategorySubId === '' ? '#409EFF' : ''}"
-        @click="handleTabTwoChange({id: ''})">全部</div>
+        @click="handleTabTwoChange({id: ''})">
+        <span>全部</span>
+        <i
+          :style="{background: currentCategorySubId === '' ? '#333333' : '#ffffff'}"></i>
+      </div>
       <div class="tag-item"
         :style="{color: item.id === currentCategorySubId ? '#409EFF' : ''}"
         v-for="item of subTabList"
@@ -46,7 +50,7 @@
         <img class="popular-small_image" v-if="archives.channel && archives.channel.image" :src="'http://test.head.huaxuezoo.com' + archives.channel.image" />
       </div>
       <div class="popular-info">
-        <div>人气单品</div>
+        <div style="font-size: 22px;">人气单品</div>
         <div class="popular-title">{{archives.title}}</div>
         <div class="popular-detail">{{archives.brief}}</div>
         <div>{{archives.seotitle}}</div>
@@ -69,7 +73,7 @@
           </div>
           <div class="product-title">{{item.title}}</div>
           <div class="product-info">{{item.param}}</div>
-          <div class="product-price">¥{{item.price}}</div>
+          <!-- <div class="product-price">¥{{item.price}}</div> -->
         </div>
       </div>
     </div>
@@ -212,6 +216,14 @@ export default {
       this.currentCategorySubId = item.id
       this.getList()
     },
+
+    // banner跳转
+    handleJump (item) {
+      this.$router.push({
+        path: item.url
+      })
+    },
+
     // 跳转到产品详情
     handleGo (item) {
       this.$router.push({

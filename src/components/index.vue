@@ -14,7 +14,8 @@
             :key="item.id">
             <div class="qybox-submenu__title">
               <span class="qybox-title"
-                :style="{color: item.id === currentId ? '#404FF5' : ''}">{{item.label}}</span>
+                >{{item.label}}</span>
+              <i :style="{background: item.id === currentId ? '#333333' : '#ffffff'}"></i>
             </div>
             <div class="qybox-menu--horizontal" v-show="item.id === 1 && mouseId === 1 && layoutCategory">
               <ul class="qybox-menu--popup">
@@ -130,10 +131,13 @@ export default {
 </script>
 
 <style>
+.qybox-menu {
+  display: flex;
+  align-items: center;
+}
 .qybox-menu-item {
   font-size: 20px;
   float: left;
-  line-height: 60px;
   margin: 0 20px;
   position: relative;
   cursor: pointer;
@@ -141,6 +145,17 @@ export default {
 .qybox-title {
   padding: 2px 5px;
 }
+.qybox-submenu__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.qybox-submenu__title i {
+  width: 20px;
+  height: 5px;
+  background: #ffffff;
+}
+
 .qybox-menu--horizontal {
   position: absolute;
   top: 56px;

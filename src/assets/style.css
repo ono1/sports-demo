@@ -23,9 +23,9 @@ ul {
   height: 61px;
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid rgba(26,25,25, .1);
 }
 .sports-menu-container {
-  line-height: 61px;
   font-size: 20px;
   display: flex;
   white-space: nowrap;
@@ -130,6 +130,20 @@ ul {
 .tag-item {
   margin: 0 30px;
   cursor: pointer;
+  font-size: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #0E121D;
+}
+.tag-item i {
+  width: 20px;
+  height: 5px;
+  background: #333333;
+  margin-top: 3px;
+}
+.tag-item:first-child {
+  margin-left: 0;
 }
 .popular-container {
   display: flex;
@@ -143,6 +157,8 @@ ul {
 .popular-info {
   width: 36%;
   position: relative;
+  color: #0E121D;
+  font-size: 16px;
 }
 .popular-big_image {
   width: 81%;
@@ -154,9 +170,10 @@ ul {
   right: 0%;
 }
 .popular-title {
-  font-size: 35px;
+  font-size: 40px;
   font-weight: 500;
   margin-top: 35px;
+  color: #0E121D;
 }
 .popular-detail {
   margin: 20px 0;
@@ -199,7 +216,8 @@ ul {
   margin-left: 0;
 } 
 .product-title {
-  height: 20px;
+  height: 22px;
+  font-size: 18px;
   overflow: hidden;
 }
 .product-title, .product-price {
@@ -220,7 +238,7 @@ ul {
   max-width: 275px;
   max-height: 220px;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 .pages-container {
   padding: 20px 0 40px;
