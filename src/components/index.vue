@@ -2,6 +2,7 @@
   <div>
     <div class="sports-top_container">
       <div class="sports-logo-container">
+        <img src="../assets/images/logo.png" style="height: 60px;" />
       </div>
       <div class="sports-menu-container">
         <ul class="qybox-menu">
