@@ -1,7 +1,7 @@
 <template>
   <div class="basic-container">
     <div class="banner-container">
-      <img src="../../assets/images/banner.jpeg" />
+      <img :src="imgUrl" />
       <div class="banner-masker"></div>
     </div>
     <div class="article-title">{{detail.title}}</div>
@@ -17,7 +17,8 @@ import Api from '@/utils/api'
 export default {
   data () {
     return {
-      detail: {}
+      detail: {},
+      imgUrl: ''
     }
   },
   methods: {
@@ -34,9 +35,24 @@ export default {
             this.$message.error(msg)
           }
         })
+    },
+    // 获取banner列表
+    getBannerList () {
+      Api.bannerList()
+        .then(res => {
+          let { code, msg, data } = res
+          if (code === 1) {
+            if (data.bannerList && data.bannerList.length > 0) {
+              this.imgUrl = data.bannerList[0]['image']
+            }
+          } else {
+            this.$message.error(msg)
+          }
+        })
     }
   },
   created () {
+    this.getBannerList()
     this.getDetail()
   }
 }

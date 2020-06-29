@@ -39,10 +39,13 @@
           :style="{background: currentCategorySubId === '' ? '#333333' : '#ffffff'}"></i>
       </div>
       <div class="tag-item"
-        :style="{color: item.id === currentCategorySubId ? '#409EFF' : ''}"
         v-for="item of subTabList"
         :key="item.id"
-        @click="handleTabTwoChange(item)">{{item.title}}</div>
+        @click="handleTabTwoChange(item)">
+        <span>{{item.title}}</span>
+        <i
+          :style="{background: currentCategorySubId === '' ? '#333333' : '#ffffff'}"></i>
+      </div>
     </div>
     <div class="popular-container" v-if="archives">
       <div class="popular-image">

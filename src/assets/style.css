@@ -409,6 +409,14 @@ ul {
   color: #343434;
   padding: 50px 85px;
 }
+.brand-container {
+  position: relative;
+  background: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, .2);
+  z-index: 2;
+  margin-top: -200px;
+  margin-bottom: 50px;
+}
 .product-detail_star {
   height: 30px;
 }
