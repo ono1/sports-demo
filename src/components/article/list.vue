@@ -5,7 +5,10 @@
         v-for="item of list"
         :key="item.id"
          @click="handleGoDetail(item)">
-        <img :src="item.image" class="article-image" />
+        <el-image
+          :src="item.image"
+          fit="scale-down"
+          style="width: 375px;height: 240px;"></el-image>
         <div class="flex1 article_info">
           <div class="article_title">
             {{item.title}}
