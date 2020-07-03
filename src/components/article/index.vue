@@ -2,13 +2,16 @@
   <div class="basic-container">
     <div class="search-container">
       <el-row>
-        <el-col :span="20">
-          <el-input v-model="title" placeholder="搜索文章标题、内容"></el-input>
+        <el-col :span="24">
+          <el-input
+            v-model="title"
+            @keyup.enter.native="handleSearch()"
+            placeholder="搜索文章标题、内容" ></el-input>
         </el-col>
-        <el-col :span="1">&nbsp;</el-col>
-        <el-col :span="3">
+        <!-- <el-col :span="1">&nbsp;</el-col> -->
+        <!-- <el-col :span="3">
             <el-button round @click="handleSearch()">搜索</el-button>
-        </el-col>
+        </el-col> -->
       </el-row>
       <!-- <input placeholder="搜索文章标题、内容" v-model="form.searchName"/> -->
     </div>
@@ -89,6 +92,7 @@ export default {
     },
 
     handleSearch () {
+      console.log('&&&&&&')
       this.page = 1
       this.list = []
       this.getArticleList()

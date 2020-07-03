@@ -28,7 +28,7 @@
           <div class="hot-title">{{item.title}}</div>
         </div>
       </swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
+      <div class="swiper-pagination" slot="pagination" v-show="tabList.length > 3"></div>
     </swiper>
     <div class="tags-container">
       <div
