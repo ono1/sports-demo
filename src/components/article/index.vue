@@ -4,26 +4,20 @@
       <el-row>
         <el-col :span="24">
           <el-input
+            class="search_input"
             v-model="title"
             @keyup.enter.native="handleSearch()"
-            placeholder="搜索文章标题、内容" ></el-input>
+            placeholder="搜索文章标题、内容" >
+            <i slot="prefix" class="el-input__icon el-icon-search"></i>
+          </el-input>
         </el-col>
-        <!-- <el-col :span="1">&nbsp;</el-col> -->
-        <!-- <el-col :span="3">
-            <el-button round @click="handleSearch()">搜索</el-button>
-        </el-col> -->
       </el-row>
-      <!-- <input placeholder="搜索文章标题、内容" v-model="form.searchName"/> -->
     </div>
     <div class="article-list_container">
       <div class="article-item"
         v-for="item of list"
         :key="item.id">
-        <el-image
-          :src="item.image"
-          fit="scale-down"
-          style="width: 375px;height: 240px;"></el-image>
-        <!-- <img :src="item.image" class="article-image" /> -->
+        <img :src="item.image" class="article-image" />
         <div class="flex1 article_info">
           <div class="article_title">
             {{item.title}}
@@ -37,26 +31,14 @@
       </div>
     </div>
     <div class="pages-container">
-      <div class="more" @click="handleGoList">查看所有文章</div>
-    </div>
-    <div class="recommend_title">推荐文章</div>
-    <div class="article-list_container">
-      <div class="article-item"
-        v-for="item of archivesList"
-        :key="item.id">
-        <el-image :src="item.image" fit="scale-down" style="width: 375px;height: 240px;"></el-image>
-        <!-- <img :src="item.image" class="article-image" /> -->
-        <div class="flex1 article_info">
-          <div class="article_title">
-            {{item.title}}
-          </div>
-          <div class="article_date">{{item.create_date}}</div>
-          <div class="article_detail">
-            {{item.brief}}
-          </div>
-          <div class="article_btn" @click="handleGoDetail(item)">查看详情</div>
-        </div>
-      </div>
+      <el-pagination
+        background
+        @current-change="getArticleList"
+        :current-page.sync="page"
+        :page-size="pageSize"
+        layout="pager"
+        :total="nums">
+      </el-pagination>
     </div>
   </div>
 </template>
@@ -70,8 +52,11 @@ export default {
       archivesList: [], // 人气文章
       list: [],
       page: 1,
+      nums: 0,
+      page_count: 0,
       model: 1,
-      title: ''
+      title: '',
+      pageSize: 6
     }
   },
   methods: {
@@ -92,7 +77,6 @@ export default {
     },
 
     handleSearch () {
-      console.log('&&&&&&')
       this.page = 1
       this.list = []
       this.getArticleList()
@@ -110,6 +94,8 @@ export default {
           let { code, msg, data } = res
           if (code === 1) {
             this.list = data.archivesList
+            this.page_count = data.page_count // 总页数
+            this.nums = data.nums // 总个数
           } else {
             this.$message.error(msg)
           }

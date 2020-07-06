@@ -4,9 +4,11 @@
       <img :src="imgUrl" />
       <div class="banner-masker"></div>
     </div>
-    <div class="basic-container brand-container">
-      <div class="brand_title">{{detail.title}}</div>
-      <div class="brand_info" v-html="detail.content">
+    <div class="basic-container">
+      <div class="brand-container">
+        <div class="brand_title">{{detail.title}}</div>
+        <div class="brand_info" v-html="detail.content">
+        </div>
       </div>
     </div>
   </div>

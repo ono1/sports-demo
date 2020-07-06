@@ -3,27 +3,18 @@
     <div class="banner-container">
       <el-carousel height="550px">
         <el-carousel-item v-for="(item, index) in bannerList" :key="index">
-          <el-image
-            style="width: 100%; height: 100%;"
-            :src="item.image"
-            fit="fill"
-            @click="handleJump(item)"></el-image>
-          <!-- <img :src="item.image" style="height: 550px;" /> -->
+          <img :src="item.image" style="width: 100%; height: 100%;" />
         </el-carousel-item>
       </el-carousel>
     </div>
-    <swiper class="swiper" :options="swiperOption" style="height: 400px;">
+    <swiper class="swiper" :options="swiperOption" style="height: 450px;">
       <swiper-slide
         v-for="(item, index) of tabList"
         :key="index">
         <div @click="handleTabChange(item)"
           :class="{'tab-item': true, 'tab-item-selected': item.id === currentCategoryParentId}">
           <div class="hot-image">
-            <el-image
-              style="width: 100%; height: 100%;"
-              src="http://test.head.huaxuezoo.com/uploads/20200601/90f7214b64120dfbcdb32738d41596e3.jpg"
-              fit="contain"></el-image>
-            <!-- <img src="../assets/images/product.png" /> -->
+            <img src="http://test.head.huaxuezoo.com/uploads/20200601/90f7214b64120dfbcdb32738d41596e3.jpg" />
           </div>
           <div class="hot-title">{{item.title}}</div>
         </div>
@@ -49,8 +40,11 @@
     </div>
     <div class="popular-container" v-if="archives">
       <div class="popular-image">
-        <img class="popular-big_image" :src="archives.image" />
-        <img class="popular-small_image" v-if="archives.channel && archives.channel.image" :src="'http://test.head.huaxuezoo.com' + archives.channel.image" />
+        <img
+          class="popular-big_image"
+          :src="archives.image" />
+        <img class="popular-small_image"
+          v-if="archives.channel && archives.channel.image" :src="'http://test.head.huaxuezoo.com' + archives.channel.image" />
       </div>
       <div class="popular-info">
         <div style="font-size: 22px;">人气单品</div>
@@ -66,13 +60,9 @@
         v-for="item of productList"
         :key="item.id"
         @click="handleGo(item)">
-        <div style="padding: 0px 20px 20px;">
+        <div>
           <div class="product-img">
-            <el-image
-            style="width: 100%; height: 100%;"
-            :src="item.image"
-            fit="contain"></el-image>
-            <!-- <img :src="item.image" /> -->
+            <img :src="item.image" />
           </div>
           <div class="product-title">{{item.title}}</div>
           <div class="product-info">{{item.param}}</div>
@@ -110,7 +100,7 @@ export default {
       productList: [],
       swiperOption: {
         slidesPerView: 3,
-        spaceBetween: 30,
+        spaceBetween: 60,
         pagination: {
           el: '.swiper-pagination',
           clickable: true
