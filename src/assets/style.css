@@ -463,8 +463,3 @@ ul {
   left: 20px;
   top: 2px;
 }
-@media (max-width:1000px) {
-  body {
-    color: red;
-  }
-}
