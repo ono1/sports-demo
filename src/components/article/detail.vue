@@ -1,12 +1,16 @@
 <template>
-  <div class="basic-container">
+  <div>
     <div class="banner-container">
       <img :src="imgUrl" />
       <div class="banner-masker"></div>
     </div>
-    <div class="article-title">{{detail.title}}</div>
-    <div class="article_author">作者: {{detail.author}}</div>
-    <div class="article-detail-container" v-html="detail.content">
+    <div class="basic-container">
+      <div class="brand-container">
+        <div class="brand_title">{{detail.title}}</div>
+        <div class="article_author">作者: {{detail.author}}</div>
+        <div class="brand_info" v-html="detail.content">
+        </div>
+      </div>
     </div>
   </div>
 </template>

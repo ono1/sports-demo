@@ -73,7 +73,7 @@ export default {
       tabList: [],
       menuList: [
         { label: '产品介绍', id: 1, value: '/' },
-        { label: '新闻文章', id: 2, value: '/article/index' },
+        { label: '新闻文章', id: 2, value: '/article/list' },
         { label: '品牌故事', id: 3, value: '/brand' },
         { label: '联系我们', id: 4, value: '/contact' }
       ],

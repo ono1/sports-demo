@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/home' // 首页
-import ArticleIndex from '@/components/article/index' // 文章页
 import ArticleList from '@/components/article/list' // 文章列表
 import ArticleDetail from '@/components/article/detail' // 文章详情
 import ProductList from '@/components/product/list' // 产品列表
@@ -26,11 +25,6 @@ export default new Router({
         path: 'index',
         name: 'Home',
         component: Home
-      },
-      {
-        path: '/article/index',
-        name: 'articleIndex',
-        component: ArticleIndex
       },
       {
         path: '/article/list',
