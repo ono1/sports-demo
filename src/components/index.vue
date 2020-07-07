@@ -139,7 +139,7 @@ export default {
 .qybox-menu-item {
   font-size: 20px;
   float: left;
-  margin: 0 20px;
+  margin: 0 50px;
   position: relative;
   cursor: pointer;
 }
