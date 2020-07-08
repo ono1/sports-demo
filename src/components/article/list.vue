@@ -14,7 +14,7 @@
           </el-col>
         </el-row>
       </div>
-    </div>  
+    </div>
     <div class="basic-container">
       <div class="article-item"
         v-for="item of archivesList"

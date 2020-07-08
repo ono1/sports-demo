@@ -138,10 +138,12 @@ export default {
 }
 .qybox-menu-item {
   font-size: 20px;
+  height: 61px;
   float: left;
   margin: 0 50px;
   position: relative;
   cursor: pointer;
+  margin-top: 15px;
 }
 .qybox-title {
   padding: 2px 5px;

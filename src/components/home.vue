@@ -14,7 +14,7 @@
         <div @click="handleTabChange(item)"
           :class="{'tab-item': true, 'tab-item-selected': item.id === currentCategoryParentId}">
           <div class="hot-image">
-            <img src="http://test.head.huaxuezoo.com/uploads/20200601/90f7214b64120dfbcdb32738d41596e3.jpg" />
+            <img :src="item.image" />
           </div>
           <div class="hot-title">{{item.title}}</div>
         </div>
@@ -35,7 +35,7 @@
         @click="handleTabTwoChange(item)">
         <span>{{item.title}}</span>
         <i
-          :style="{background: currentCategorySubId === '' ? '#333333' : '#ffffff'}"></i>
+          :style="{background: currentCategorySubId === item.id ? '#333333' : '#ffffff'}"></i>
       </div>
     </div>
     <div class="popular-container" v-if="archives">
@@ -246,7 +246,7 @@ export default {
   margin: 20px 0 0;
 }
 .swiper-pagination-bullet-active {
-  background: #000;
+  background: #000!important;
 }
 .tab-item {
   border: 1px dashed #fff;
