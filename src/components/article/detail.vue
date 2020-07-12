@@ -21,7 +21,7 @@ import Api from '@/utils/api'
 export default {
   data () {
     return {
-      detail: {},
+      detail: {}
     }
   },
   methods: {

@@ -56,5 +56,6 @@ export default {
   recommendList (data) { return fetch({ method: 'get', url: '/api/wxapp.archives/recommend', data }) }, // 推荐文章/产品
   list (data) { return fetch({ method: 'get', url: '/api/wxapp.archives/index', data }) }, // 文章/产品列表
   productDetail (data) { return fetch({ method: 'get', url: '/api/wxapp.archives/detail', data }) }, // 文章/产品详情
-  contactUs (data) { return fetch({ method: 'get', url: '/api/wxapp.index/page', data }) } // 品牌故事/联系我们
+  contactUs (data) { return fetch({ method: 'get', url: '/api/wxapp.index/page', data }) }, // 品牌故事/联系我们
+  getcontact (data) { return fetch({ method: 'get', url: '/api/wxapp.index/getcontact', data }) } // 联系我们
 }

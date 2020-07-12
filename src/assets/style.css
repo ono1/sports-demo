@@ -266,9 +266,59 @@ ul {
   background-color: #000000;
   font-size: 14px;
   color: #ffffff;
+  position: relative;
+}
+.buttom-wrapper {
   display: flex;
   justify-content: space-between;
-  padding: 33px 10%;
+  align-items: center;
+  margin: 0 auto;
+  padding: 30px 0;
+  width: 1180px;
+}
+.buttom-wrapper_home {
+  width: 1180px;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+.button_list {
+  display: flex;
+  margin-left: 150px;
+  align-items: flex-end;
+  margin-top: 20px;
+}
+.contact_title {
+  margin-right: 50px;
+  font-size: 18px;
+  font-weight: 500;
+}
+.contact_title span {
+  border-bottom: 1px solid #ffffff;
+  padding-bottom: 5px;
+  display: inline-block;
+}
+.buttom-wrapper img {
+  width: 117px;
+  height: 117px;
+  margin-bottom: 15px;
+}
+.contact-item {
+  margin-right: 80px;
+  line-height: 1.8;
+}
+.fixed_img {
+  position: absolute;
+  bottom: 230px;
+  right: 0;
+  background-color: #333333;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+}
+.fixed_img img {
+  width: 230px;
+  height: 230px;
+
 }
 .contact-info {
   line-height: 2;
@@ -393,9 +443,6 @@ ul {
 .contact-title {
   font-size: 28px;
   font-weight: 500;
-  margin-bottom: 30px;
-}
-.contact-item {
   margin-bottom: 30px;
 }
 .contact-item .sub_title {

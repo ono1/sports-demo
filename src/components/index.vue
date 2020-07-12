@@ -42,20 +42,45 @@
       </div>
     </div>
     <div class="main"><router-view /></div>
-    <div class="bottom-container">
-      <div class="contact-info">
-        <div>联系我们</div>
-        <div>地址: 北京市海淀区某某大厦15-1591室</div>
-        <div>电话: 010-2333455</div>
-        <div>传真: 020-113556</div>
-        <div>邮箱: 8487651513@163.com</div>
-        <div>手机: 13243178023</div>
+    <div class="bottom-container" >
+      <div class="buttom-wrapper" v-show="!isHome">
+        <div class="contact-info">
+          <div style="font-size: 18px; font-weight: 500; margin-bottom: 10px;">联系我们</div>
+          <div>地址: {{contactInfo.my_address}}</div>
+          <div>电话: {{contactInfo.my_phone}}</div>
+          <div>传真: {{contactInfo.my_fax}}</div>
+          <div>邮箱: {{contactInfo.my_email}}</div>
+          <div>手机: {{contactInfo.my_tel}}</div>
+        </div>
+        <div>
+          <img :src="contactInfo.my_qrcode" />
+          <div>公众号二维码</div>
+        </div>
       </div>
-      <div>
-        <img src="" />
-        <div>公众号二维码</div>
+
+      <div class="buttom-wrapper_home" v-show="isHome">
+          <div class="contact_title">
+            <span>联系我们</span>
+          </div>
+          <div class="button_list">
+            <div class="contact-item">
+              <div>地址: {{contactInfo.my_address}}</div>
+              <div>电话: {{contactInfo.my_phone}}</div>
+              <div>传真: {{contactInfo.my_fax}}</div>
+            </div>
+            <div class="contact-item">
+              <div>邮箱: {{contactInfo.my_email}}</div>
+              <div>手机: {{contactInfo.my_tel}}</div>
+            </div>
+          </div>
+          <div class="fixed_img">
+            <img :src="contactInfo.my_qrcode" />
+            <div>公众号二维码</div>
+          </div>
       </div>
+
     </div>
+
   </div>
 </template>
 
@@ -77,7 +102,16 @@ export default {
         { label: '品牌故事', id: 3, value: '/brand' },
         { label: '联系我们', id: 4, value: '/contact' }
       ],
-      layoutCategory: false
+      layoutCategory: false,
+      contactInfo: {
+        my_address: '',
+        my_email: '',
+        my_fax: '',
+        my_phone: '',
+        my_qrcode: '',
+        my_tel: ''
+      },
+      isHome: true
     }
   },
   methods: {
@@ -114,10 +148,27 @@ export default {
             this.$message.error(msg)
           }
         })
+    },
+
+    // 联系我们
+    getcontactInfo () {
+      Api.getcontact()
+        .then(res => {
+          let { code, msg, data } = res
+          console.log('联系我们', data)
+          if (code === 1) {
+            Object.keys(this.contactInfo).map(k => {
+              this.contactInfo[k] = data[k]
+            })
+          } else {
+            this.$message.error(msg)
+          }
+        })
     }
   },
   created () {
     this.getTabList()
+    this.getcontactInfo()
   },
   watch: {
     '$route' (v) {
@@ -125,6 +176,12 @@ export default {
         this.layoutCategory = true
       } else {
         this.layoutCategory = false
+      }
+      console.log('vvvv', v)
+      if (v.path === '/index') {
+        this.isHome = true
+      } else {
+        this.isHome = false
       }
     }
   }

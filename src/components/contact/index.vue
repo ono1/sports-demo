@@ -41,7 +41,7 @@ export default {
         title: '',
         content: '',
         image: ''
-      },
+      }
     }
   },
   methods: {
