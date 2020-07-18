@@ -1,6 +1,6 @@
 <template>
   <div style="background: #f4f4f4;">
-    <div class="product-wrapper">
+    <div class="product-wrapper" style="padding-top: 40px;">
       <div class="product-container">
         <div class="product-item product-list-item"
           v-for="item of productList"
