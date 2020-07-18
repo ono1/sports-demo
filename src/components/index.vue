@@ -42,7 +42,7 @@
       </div>
     </div>
     <div class="main"><router-view /></div>
-    <div class="bottom-container" >
+    <div class="bottom-container" v-show="bottomShow">
       <div class="buttom-wrapper" v-show="!isHome">
         <div class="contact-info">
           <div style="font-size: 18px; font-weight: 500; margin-bottom: 10px;">联系我们</div>
@@ -111,7 +111,18 @@ export default {
         my_qrcode: '',
         my_tel: ''
       },
-      isHome: true
+      isHome: true,
+      bottomShow: true,
+      menuListObj: {
+        '/': { id: 1 },
+        '/index': { id: 1 },
+        '/product/list': { id: 1 },
+        '/product/detail': { id: 1 },
+        '/article/list': { id: 2 },
+        '/article/detail': { id: 2 },
+        '/brand': { id: 3 },
+        '/contact': { id: 4 }
+      }
     }
   },
   methods: {
@@ -155,7 +166,6 @@ export default {
       Api.getcontact()
         .then(res => {
           let { code, msg, data } = res
-          console.log('联系我们', data)
           if (code === 1) {
             Object.keys(this.contactInfo).map(k => {
               this.contactInfo[k] = data[k]
@@ -167,21 +177,42 @@ export default {
     }
   },
   created () {
+    this.currentId = this.menuListObj[this.$route.path].id
+    if (this.$route.path === '/product/list') {
+      this.layoutCategory = true
+    } else {
+      this.layoutCategory = false
+    }
+    if (this.$route.path === '/index') {
+      this.isHome = true
+    } else {
+      this.isHome = false
+    }
+    if (this.$route.path === '/contact') {
+      this.bottomShow = false
+    } else {
+      this.bottomShow = true
+    }
     this.getTabList()
     this.getcontactInfo()
   },
   watch: {
     '$route' (v) {
+      this.currentId = this.menuListObj[v.path].id
       if (v.path === '/product/list') {
         this.layoutCategory = true
       } else {
         this.layoutCategory = false
       }
-      console.log('vvvv', v)
       if (v.path === '/index') {
         this.isHome = true
       } else {
         this.isHome = false
+      }
+      if (v.path === '/contact') {
+        this.bottomShow = false
+      } else {
+        this.bottomShow = true
       }
     }
   }
@@ -238,6 +269,7 @@ export default {
   position: relative;
   font-size: 12px;
   border-left: 1px solid #fff;
+  margin-right: 50px;
 }
 .qybox-menu-icon {
   font-size: 14px;

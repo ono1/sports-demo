@@ -26,13 +26,13 @@
           </div>
           <div class="article_date">{{item.create_date}}</div>
           <div class="article_detail" style="height: 104px;margin-bottom: 47px;">
-            {{item.brief}}
+            {{item.description}}
           </div>
           <div class="article_btn" @click="handleGoDetail(item)">查看详情</div>
         </div>
       </div>
     </div>
-    <div style="margin: 60px 0; border-bottom: 1px solid #333333;"></div>
+    <div style="margin: 60px 0; border-bottom: 1px solid #333333;" v-show="archivesList.length > 0"></div>
     <div class="basic-container">
       <div class="article-list_container">
         <div class="article-item"
@@ -45,7 +45,7 @@
             </div>
             <div class="article_date">{{item.create_date}}</div>
             <div class="article_detail">
-              {{item.brief}}
+              {{item.description}}
             </div>
             <div class="article_btn" @click="handleGoDetail(item)">查看详情</div>
           </div>

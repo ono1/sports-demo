@@ -7,15 +7,15 @@
         </el-carousel-item>
       </el-carousel>
     </div>
-    <swiper class="swiper" :options="swiperOption" style="height: 450px;">
+    <swiper class="swiper" :options="swiperOption" style="height: 480px;">
       <swiper-slide
         v-for="(item, index) of tabList"
         :key="index">
         <div @click="handleTabChange(item)"
           :class="{'tab-item': true, 'tab-item-selected': item.id === currentCategoryParentId}">
-          <div class="hot-image">
-            <img :src="item.image" />
-          </div>
+          <!-- <div class="hot-image"> -->
+            <img :src="item.image" class="hot-image" />
+          <!-- </div> -->
           <div class="hot-title">{{item.title}}</div>
         </div>
       </swiper-slide>
@@ -183,6 +183,13 @@ export default {
         .then(res => {
           let { code, msg, data } = res
           if (code === 1) {
+            if (data.archivesList.length > 0) {
+              for (let item of data.archivesList) {
+                if (item.title.length > 15) {
+                  item.title = (item.title.substr(0, 15) + '...')
+                }
+              }
+            }
             this.productList = data.archivesList // 列表
             this.page_count = data.page_count // 总页数
             this.nums = data.nums // 总个数
@@ -194,12 +201,16 @@ export default {
 
     // 一级分类切换事件
     handleTabChange (item) {
-      this.currentCategoryParentId = item.id
       this.currentCategorySubId = ''
-      if (item.children) {
-        this.subTabList = item.children
+      if (item.id === this.currentCategoryParentId) {
+        this.currentCategoryParentId = ''
       } else {
-        this.subTabList = []
+        this.currentCategoryParentId = item.id
+        if (item.children) {
+          this.subTabList = item.children
+        } else {
+          this.subTabList = []
+        }
       }
       this.getList()
     },
@@ -251,6 +262,8 @@ export default {
 .tab-item {
   border: 1px dashed #fff;
   position: relative;
+  width: 348px;
+  height: 398px;
 }
 .tab-item-selected {
   border-color: #000;
