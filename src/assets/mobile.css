@@ -95,8 +95,8 @@ ul {
 .tab-item {
   border: 1px dashed #fff;
   position: relative;
-  width: 263px;
-  height: 398px;
+  width: 253px;
+  height: 388px;
 }
 .tab-item-selected {
   border-color: #000;
