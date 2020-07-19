@@ -2,7 +2,7 @@
   <div class="basic-container">
     <div class="product-detail_container">
       <div class="product-detail_img">
-        <div style="max-width: 550px; max-height: 440px;">
+        <div class="product-detail_img_container">
           <el-carousel height="440px">
             <el-carousel-item
               v-for="(item, index) in detail.imagesList"
@@ -10,7 +10,7 @@
             <!-- <el-image
               :src="item"
               fit="scale-down"></el-image> -->
-              <img :src="item"  style="max-width: 550px;max-height: 440px;" />
+              <img :src="item"  style="width: 100%;height: 100%" />
             </el-carousel-item>
           </el-carousel>
         </div>
@@ -24,7 +24,7 @@
           <el-rate
             v-model="detail.rmd_rank"
             disabled
-            show-score
+            :colors="colors"
             text-color="#ff9900"
             score-template="{value}">
           </el-rate>
@@ -46,7 +46,8 @@ import Api from '@/utils/api'
 export default {
   data () {
     return {
-      detail: {}
+      detail: {},
+      colors: ['#333333', '#333333', '#333333', '#333333', '#333333']
     }
   },
   methods: {

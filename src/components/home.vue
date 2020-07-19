@@ -13,9 +13,7 @@
         :key="index">
         <div @click="handleTabChange(item)"
           :class="{'tab-item': true, 'tab-item-selected': item.id === currentCategoryParentId}">
-          <!-- <div class="hot-image"> -->
-            <img :src="item.image" class="hot-image" />
-          <!-- </div> -->
+          <img :src="item.image" class="hot-image" />
           <div class="hot-title">{{item.title}}</div>
         </div>
       </swiper-slide>
@@ -66,7 +64,6 @@
           </div>
           <div class="product-title">{{item.title}}</div>
           <div class="product-info">{{item.param}}</div>
-          <!-- <div class="product-price">¥{{item.price}}</div> -->
         </div>
       </div>
     </div>
@@ -252,21 +249,6 @@ export default {
 </script>
 
 <style>
-.swiper {
-  height: 400px;
-  margin: 20px 0 0;
-}
-.swiper-pagination-bullet-active {
-  background: #000!important;
-}
-.tab-item {
-  border: 1px dashed #fff;
-  position: relative;
-  width: 348px;
-  height: 398px;
-}
-.tab-item-selected {
-  border-color: #000;
-}
+
 
 </style>
