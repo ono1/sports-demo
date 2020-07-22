@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{'sport-demo_phone': isPhone}">
     <div class="sports-top_container">
       <div class="sports-logo-container">
         <img src="../assets/images/logo.png" style="height: 60px;" />
@@ -122,7 +122,8 @@ export default {
         '/article/detail': { id: 2 },
         '/brand': { id: 3 },
         '/contact': { id: 4 }
-      }
+      },
+      isPhone: false
     }
   },
   methods: {
@@ -177,6 +178,12 @@ export default {
     }
   },
   created () {
+    if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+      this.isPhone = true
+    } else {
+      this.isPhone = false
+    }
+
     this.currentId = this.menuListObj[this.$route.path].id
     if (this.$route.path === '/product/list') {
       this.layoutCategory = true
