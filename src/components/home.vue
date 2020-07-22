@@ -7,7 +7,7 @@
         </el-carousel-item>
       </el-carousel>
     </div>
-    <swiper class="swiper" :options="swiperOption" style="height: 480px;">
+    <swiper class="swiper" :options="swiperOption" style="height: 480px;" v-if="tabList.length > 0">
       <swiper-slide
         v-for="(item, index) of tabList"
         :key="index">

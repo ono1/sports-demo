@@ -91,6 +91,7 @@ ul {
   border-bottom: 1px solid rgba(26,25,25, .1);
 }
 .swiper {
+  width: 1190px;
   height: 400px;
   margin: 20px 0 0;
 }
