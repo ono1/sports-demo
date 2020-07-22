@@ -483,13 +483,14 @@ ul {
   display: flex;
   margin: 60px 0;
 }
-.product-detail_title {
+.sport-demo_phone .product-detail_title {
   color: #0E121D;
   font-weight: 500;
   font-size: 24px;
   margin-bottom: 10px;
   height: 33px;
   overflow: hidden;
+  white-space: pre-wrap;
   text-overflow: ellipsis;
 }
 .product-detail_size, .product-detail_hint, .product-detail_star_text {
