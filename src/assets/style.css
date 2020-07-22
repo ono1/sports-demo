@@ -104,6 +104,9 @@ ul {
   width: 348px;
   height: 398px;
 }
+.hot-image:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, .1);
+}
 .tab-item-selected {
   border-color: #000;
 }
