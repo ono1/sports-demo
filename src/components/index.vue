@@ -51,7 +51,7 @@
           <div>邮箱: {{contactInfo.my_email}}</div>
           <div>手机: {{contactInfo.my_tel}}</div>
         </div>
-        <div>
+        <div style="text-align: center;">
           <img :src="contactInfo.my_qrcode" />
           <div>公众号二维码</div>
         </div>
