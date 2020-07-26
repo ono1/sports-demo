@@ -4,18 +4,21 @@
       <div class="search-container">
         <el-row>
           <el-col :span="24">
-            <el-input
-              class="search_input"
-              v-model="title"
-              @keyup.enter.native="handleSearch()"
-              placeholder="搜索文章标题、内容" >
-              <i slot="prefix" class="el-input__icon el-icon-search"></i>
-            </el-input>
+            <div style="position: relative;">
+              <el-input
+                class="search_input"
+                v-model="title"
+                @keyup.enter.native="handleSearch()"
+                placeholder="搜索文章标题、内容" >
+                <i slot="prefix" class="el-input__icon el-icon-search"></i>
+              </el-input>
+              <span class="cancel_button" @click="handleCancel()">取消</span>
+            </div>
           </el-col>
         </el-row>
       </div>
     </div>
-    <div class="basic-container">
+    <div class="basic-container" v-show="hotShow && page === 1">
       <div class="article-item"
         v-for="item of archivesList"
         :key="item.id">
@@ -32,7 +35,7 @@
         </div>
       </div>
     </div>
-    <div style="margin: 60px 0; border-bottom: 1px solid #333333;" v-show="archivesList.length > 0"></div>
+    <div style="margin: 60px 0; border-bottom: 1px solid #D8D8D8;" v-show="archivesList.length > 0 && hotShow && page === 1"></div>
     <div class="basic-container">
       <div class="article-list_container">
         <div class="article-item"
@@ -57,7 +60,7 @@
         background
         @current-change="getArticleList"
         :current-page.sync="page"
-        :page-size="pageSize"
+        :page-size="size"
         layout="pager"
         :total="nums">
       </el-pagination>
@@ -78,10 +81,20 @@ export default {
       page_count: 0,
       model: 1,
       title: '',
-      pageSize: 6
+      size: 6,
+      hotShow: true
     }
   },
   methods: {
+
+    // 取消
+    handleCancel () {
+      this.hotShow = true
+      this.title = ''
+      this.page = 1
+      this.list = []
+      this.getArticleList()
+    },
     // 人气单品
     getRecommendList () {
       let params = {
@@ -101,6 +114,7 @@ export default {
     handleSearch () {
       this.page = 1
       this.list = []
+      this.hotShow = false
       this.getArticleList()
     },
 
@@ -109,7 +123,8 @@ export default {
       let params = {
         page: this.page,
         model: 1,
-        title: this.title
+        title: this.title,
+        size: this.size
       }
       Api.list(params)
         .then(res => {

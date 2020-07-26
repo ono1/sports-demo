@@ -36,23 +36,29 @@
           :style="{background: currentCategorySubId === item.id ? '#333333' : '#ffffff'}"></i>
       </div>
     </div>
-    <div class="popular-container" v-if="archives">
-      <div class="popular-image">
-        <img
-          class="popular-big_image"
-          :src="archives.image" />
-        <img class="popular-small_image"
-          v-if="archives.channel && archives.channel.image" :src="'http://test.head.huaxuezoo.com' + archives.channel.image" />
+    <template
+      v-if="(currentCategoryParentId || currentCategorySubId) && archivesList.length > 0">
+      <div
+        class="popular-container"
+        v-for="(item, index) of archivesList"
+        :key="index">
+        <div class="popular-image">
+          <img
+            class="popular-big_image"
+            :src="item.image" />
+          <img class="popular-small_image"
+            v-if="item.productdata && item.productdata" :src="item.productdata" />
+        </div>
+        <div class="popular-info">
+          <div style="font-size: 22px;">人气单品</div>
+          <div class="popular-title">{{item.title}}</div>
+          <div class="popular-detail">{{item.brief}}</div>
+          <div>{{item.seotitle}}</div>
+          <div class="popular-panel">{{item.param}}</div>
+          <div class="popular-btn" @click="handleGo(item)">查看详情</div>
+        </div>
       </div>
-      <div class="popular-info">
-        <div style="font-size: 22px;">人气单品</div>
-        <div class="popular-title">{{archives.title}}</div>
-        <div class="popular-detail">{{archives.brief}}</div>
-        <div>{{archives.seotitle}}</div>
-        <div class="popular-panel">{{archives.param}}</div>
-        <div class="popular-btn" @click="handleGo(archives)">查看详情</div>
-      </div>
-    </div>
+    </template>
     <div class="product-container">
       <div class="product-item"
         v-for="item of productList"
@@ -90,7 +96,6 @@ export default {
       currentCategoryParentId: '', // 当前选中一级分类ID
       subTabList: [], // 二级分类列表
       currentCategorySubId: '', // 当前选中二级分类ID
-      archives: {}, // 人气单品列表
       page: 1,
       page_count: 0, // 总页数
       nums: 0, // 总个数
@@ -102,7 +107,8 @@ export default {
           el: '.swiper-pagination',
           clickable: true
         }
-      }
+      },
+      archivesList: [] // 人气单品
     }
   },
   methods: {
@@ -111,7 +117,6 @@ export default {
     init () {
       this.getBannerList() // 焦点图
       this.getTabList() // 分类列表
-      this.getRecommendList() // 推荐产品
       this.getList() // 产品列表
     },
 
@@ -154,11 +159,16 @@ export default {
       let params = {
         model: 2 // 1: 新闻 2: 产品
       }
+      if (this.currentCategorySubId) {
+        params.channel = this.currentCategorySubId
+      } else {
+        params.channel = this.currentCategoryParentId
+      }
       Api.recommendList(params)
         .then(res => {
           let { code, msg, data } = res
           if (code === 1) {
-            this.archives = data.archivesList[0]
+            this.archivesList = data.archivesList
           } else {
             this.$message.error(msg)
           }
@@ -169,7 +179,8 @@ export default {
     getList () {
       let params = {
         model: 2,
-        page: this.page
+        page: this.page,
+        size: 8
       }
       if (this.currentCategorySubId) {
         params.channel = this.currentCategorySubId
@@ -210,12 +221,14 @@ export default {
         }
       }
       this.getList()
+      this.getRecommendList()
     },
 
     // 二级分类
     handleTabTwoChange (item) {
       this.currentCategorySubId = item.id
       this.getList()
+      this.getRecommendList()
     },
 
     // banner跳转

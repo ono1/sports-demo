@@ -19,7 +19,10 @@
       <div class="flex1 product-detail_info_container">
         <div class="product-detail_title">{{detail.title}}</div>
         <div class="product-detail_size">{{detail.param}}</div>
-        <div class="product-detail_price">¥{{detail.price}}</div>
+        <div class="product-detail_price">
+          <span style="margin-right: 9px;"><img src="../../assets/images/icon_1.png" style="width: 12px;height: 40px;" /></span>
+          <span>¥<strong style="margin-left: 5px;">{{detail.price}}</strong></span>
+        </div>
         <div class="product-detail_star">
           <el-rate
             v-model="detail.rmd_rank"

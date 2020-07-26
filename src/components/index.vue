@@ -11,9 +11,8 @@
             v-for="(item, index) in menuList"
             @mouseenter="mouseId = item.id"
             @mouseleave="mouseId = ''"
-            @click="handleGo(item)"
             :key="item.id">
-            <div class="qybox-submenu__title">
+            <div class="qybox-submenu__title" @click.capture="handleGo(item)">
               <span class="qybox-title"
                 >{{item.label}}</span>
               <i :style="{background: item.id === currentId ? '#333333' : '#ffffff'}"></i>
@@ -23,14 +22,14 @@
                 <li class="qybox-submenu-item" v-for="child of tabList" :key="child.id">
                   <div
                     class="qybox-menu-icon"
-                    :style="{color: child.id === currentCategoryId ? 'rgba(255, 255, 255, .5)' : '#fff'}"
+                    :style="{color: child.id === currentCategoryId ? 'rgba(255, 255, 255, .5)' : '#FFFFFF'}"
                     @mouseenter="handleToMouseEnter(child)"
                     @click.stop="handleClick(child)">{{child.title}}</div>
                   <ul class="qybox-el-menu--popup">
                     <li
                       v-for="grand of child.children"
                       :key="grand.id"
-                      :style="{color: grand.id === currentCategoryId ? 'rgba(255, 255, 255, .5)' : '#fff'}"
+                      :style="{color: grand.id === currentCategoryId ? 'rgba(255, 255, 255, .5)' : '#FEFEFE'}"
                       @mouseenter="handleToMouseEnter(grand)"
                       @click.stop="handleClick(grand)">{{grand.title}}</li>
                   </ul>

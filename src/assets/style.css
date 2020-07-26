@@ -57,6 +57,7 @@ ul {
   z-index: 3;
   box-shadow: 0 3px 24px rgba(64, 79, 245, .1);
   display: flex;
+  border-radius: 6px;
   /* color: #404FF5; */
 }
 .qybox-menu--popup {
@@ -73,13 +74,14 @@ ul {
 }
 .qybox-menu-icon {
   font-size: 14px;
-  padding-bottom: 5px;
+  font-weight: 500;
 }
 .qybox-el-menu--popup {
-  padding: 10px 0;
+  padding: 0;
 }
 .qybox-el-menu--popup li {
   line-height: 25px;
+  color: #FEFEFE;
 }
 .sub-title {
   font-size: 14px;
@@ -99,7 +101,6 @@ ul {
   background: #000!important;
 }
 .tab-item {
-  border: 1px dashed #fff;
   position: relative;
   width: 348px;
   height: 398px;
@@ -108,7 +109,7 @@ ul {
   box-shadow: 0 0 15px rgba(0, 0, 0, .1);
 }
 .tab-item-selected {
-  border-color: #000;
+  box-shadow: 0 0 15px rgba(0, 0, 0, .1);
 }
 .carousel {
   height: 550px;
@@ -394,7 +395,7 @@ ul {
 }
 .fixed_img {
   position: fixed;
-  bottom: 20%;
+  bottom: 8%;
   right: 0;
   background-color: #333333;
   color: #fff;
@@ -403,8 +404,8 @@ ul {
   z-index: 10;
 }
 .fixed_img img {
-  width: 230px;
-  height: 230px;
+  width: 130px;
+  height: 130px;
 
 }
 .contact-info {
@@ -437,7 +438,7 @@ ul {
 .article_detail {
   color: #333333;
   font-size: 20px;
-  height: 76px;
+  height: 80px;
   overflow: hidden;
   margin-bottom: 15px;
 }
@@ -511,6 +512,7 @@ ul {
   font-weight: bold;
   color: #333333;
   margin: 8px 0;
+  display: flex;
 }
 .product-detail_info {
   font-size: 22px;
@@ -532,6 +534,16 @@ ul {
 .contact-container {
   color: #333333;
   margin: 60px 50px;
+  position: relative;
+}
+.contact-qrcode {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.contact-qrcode img {
+  width: 117px;
+  height: 117px;
 }
 .contact-title {
   font-size: 28px;
@@ -579,6 +591,7 @@ ul {
 }
 .product-content {
   margin: 50px 0;
+  border-top: 1px solid #D8D8D8;
 }
 .product-wrapper {
   width: 1190px;
@@ -609,4 +622,15 @@ ul {
 .swiper-pagination-bullet-active {
   width: 10px!important;
   height: 10px!important;
+}
+.cancel_button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+  z-index: 2;
+  cursor: pointer;
+}
+.cancel_button:hover {
+  font-weight: 500;
 }

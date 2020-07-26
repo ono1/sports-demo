@@ -55,7 +55,8 @@ export default {
       let params = {
         model: 2,
         page: this.page,
-        channel: this.$route.query.id || ''
+        channel: this.$route.query.id || '',
+        size: 16
       }
       Api.list(params)
         .then(res => {
