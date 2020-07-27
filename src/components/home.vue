@@ -3,7 +3,7 @@
     <div class="banner-container">
       <el-carousel height="550px">
         <el-carousel-item v-for="(item, index) in bannerList" :key="index">
-          <img :src="item.image" style="width: 100%; height: 100%;" />
+          <img :src="item.image" @click="handleJump(item)" style="width: 100%; height: 100%;" />
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -37,7 +37,7 @@
       </div>
     </div>
     <template
-      v-if="(currentCategoryParentId || currentCategorySubId) && archivesList.length > 0">
+      v-if="archivesList.length > 0">
       <div
         class="popular-container"
         v-for="(item, index) of archivesList"
@@ -118,6 +118,7 @@ export default {
       this.getBannerList() // 焦点图
       this.getTabList() // 分类列表
       this.getList() // 产品列表
+      this.getRecommendList() // 人气单品
     },
 
     // 获取banner列表
@@ -233,9 +234,14 @@ export default {
 
     // banner跳转
     handleJump (item) {
-      this.$router.push({
-        path: item.url
-      })
+
+      if (item.url.indexOf('http') > 0) {
+        window.open('http://www.baidu.com', "_blank")
+      } else {
+         this.$router.push({
+          path: item.url
+        })
+      }
     },
 
     // 跳转到产品详情
