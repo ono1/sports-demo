@@ -50,10 +50,9 @@
             v-if="item.productdata && item.productdata" :src="item.productdata" />
         </div>
         <div class="popular-info">
-          <div style="font-size: 22px;">人气单品</div>
+          <div style="font-size: 20px;">人气单品</div>
           <div class="popular-title">{{item.title}}</div>
           <div class="popular-detail">{{item.brief}}</div>
-          <div>{{item.seotitle}}</div>
           <div class="popular-panel">{{item.param}}</div>
           <div class="popular-btn" @click="handleGo(item)">查看详情</div>
         </div>

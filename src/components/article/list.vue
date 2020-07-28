@@ -35,7 +35,7 @@
         </div>
       </div>
     </div>
-    <div style="margin: 60px 0; border-bottom: 1px solid #D8D8D8;" v-show="archivesList.length > 0 && hotShow && page === 1"></div>
+    <div style="margin: 60px 0; border-bottom: 1px solid #EEEEEE;" v-show="archivesList.length > 0 && hotShow && page === 1"></div>
     <div class="basic-container">
       <div class="article-list_container">
         <div class="article-item"
