@@ -49,10 +49,12 @@
   cursor: pointer;
   background-color: #ffffff;
 }
-
 .sport-demo_phone .product-item img {
   width: 207px;
   height: 165px;
+}
+.sport-demo_phone .product-item:nth-child(4n) {
+  margin-right: 0;
 }
 .sport-demo_phone .product-info {
   color: #666666;
@@ -112,4 +114,21 @@
   width: 900px;
   margin: 0 auto;
   background-color: #f4f4f4;
+}
+
+.sport-demo_phone .popular-big_image {
+  width: 419px;
+  height: 328px;
+}
+.sport-demo_phone .popular-small_image {
+  width: 189px;
+  height: 151px;
+  left: 325px;
+}
+.sport-demo_phone .popular-info {
+  margin-left: 145px;
+}
+.sport-demo_phone .fixed_img img {
+  width: 110px;
+  height: 110px;
 }
