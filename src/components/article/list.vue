@@ -8,11 +8,13 @@
               <el-input
                 class="search_input"
                 v-model="title"
+                @focus="show = true"
+                @blur="show = false"
                 @keyup.enter.native="handleSearch()"
                 placeholder="搜索文章标题、内容" >
                 <i slot="prefix" class="el-input__icon el-icon-search"></i>
               </el-input>
-              <span class="cancel_button" @click="handleCancel()">取消</span>
+              <span class="cancel_button" :style="{opacity: show ? 1 : 0, cursor: show ? 'pointer' : 'default'}" @click="handleCancel()">取消</span>
             </div>
           </el-col>
         </el-row>
@@ -82,11 +84,15 @@ export default {
       model: 1,
       title: '',
       size: 6,
-      hotShow: true
+      hotShow: true,
+      show: false
     }
   },
   methods: {
-
+    handleBlur () {
+      console.log('7777')
+      this.cancelShow = false
+    },
     // 取消
     handleCancel () {
       this.hotShow = true
@@ -95,6 +101,7 @@ export default {
       this.list = []
       this.getArticleList()
     },
+
     // 人气单品
     getRecommendList () {
       let params = {

@@ -611,10 +611,14 @@ ul {
 .el-pagination.is-background .el-pager li:not(.disabled).active {
   background-color: #000000;
 }
-.search_input input {
-  height: 80px;
+.search_input {
   border-radius: 50px;
   background-color: #F3F3F3;
+}
+.search_input input {
+  background-color: #F3F3F3;
+  width: 80%;
+  height: 80px;
   border: none;
   font-size: 18px;
 }
@@ -636,6 +640,7 @@ ul {
   right: 20px;
   z-index: 2;
   cursor: pointer;
+  color: #AAAAAA;
 }
 .cancel_button:hover {
   font-weight: 500;
