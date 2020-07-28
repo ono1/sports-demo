@@ -234,7 +234,7 @@ export default {
 
     // banner跳转
     handleJump (item) {
-      if (item.url.indexOf('http') > 0) {
+      if (item.url.indexOf('http') > -1) {
         window.open('http://www.baidu.com', '_blank')
       } else {
         this.$router.push({
