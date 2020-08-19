@@ -427,7 +427,7 @@ ul {
 .article_title {
   font-size: 22px;
   color: #333333;
-  font-weight: 500;
+  font-weight: bolder;
   margin: 10px 0;
 }
 .article_date {
@@ -495,9 +495,8 @@ ul {
 }
 .product-detail_title {
   color: #0E121D;
-  font-weight: 500;
+  font-weight: bolder;
   font-size: 22px;
-  margin-bottom: 10px;
   height: 33px;
   overflow: hidden;
   white-space: nowrap;
@@ -506,6 +505,8 @@ ul {
 .product-detail_size, .product-detail_hint, .product-detail_star_text {
   font-size: 12px;
   color: #666666;
+  height: 14px;
+  margin: 3px 0 8px;
 }
 .product-detail_star_text {
   margin-top: 5px;
@@ -514,14 +515,14 @@ ul {
   font-size: 48px;
   font-weight: bold;
   color: #333333;
-  margin: 8px 0;
+  margin: 0 0 8px;
   display: flex;
 }
 .product-detail_info {
   font-size: 20px;
   font-weight: bold;
   color: #333333;
-  margin: 30px 0 10px;
+  margin: 50px 0 10px;
   height: 86px;
   overflow: hidden;
 }

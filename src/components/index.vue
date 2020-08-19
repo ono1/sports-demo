@@ -42,7 +42,7 @@
     </div>
     <div class="main"><router-view /></div>
     <div class="bottom-container" v-show="bottomShow">
-      <div class="buttom-wrapper" v-show="!isHome">
+      <div class="buttom-wrapper">
         <div class="contact-info">
           <div style="font-size: 18px; font-weight: 500; margin-bottom: 10px;">联系我们</div>
           <div>地址: {{contactInfo.my_address}}</div>
@@ -57,7 +57,7 @@
         </div>
       </div>
 
-      <div class="buttom-wrapper_home" v-show="isHome">
+      <!-- <div class="buttom-wrapper_home" v-show="isHome">
           <div class="contact_title">
             <span>联系我们</span>
           </div>
@@ -76,7 +76,7 @@
             <img :src="contactInfo.my_qrcode" />
             <div>公众号二维码</div>
           </div>
-      </div>
+      </div> -->
 
     </div>
 
