@@ -45,11 +45,11 @@
       <div class="buttom-wrapper">
         <div class="contact-info">
           <div style="font-size: 18px; font-weight: 500; margin-bottom: 10px;">联系我们</div>
-          <div>地址: {{contactInfo.my_address}}</div>
-          <div>电话: {{contactInfo.my_phone}}</div>
-          <div>传真: {{contactInfo.my_fax}}</div>
-          <div>邮箱: {{contactInfo.my_email}}</div>
-          <div>手机: {{contactInfo.my_tel}}</div>
+          <div v-show="contactInfo.my_address">地址: {{contactInfo.my_address}}</div>
+          <div v-show="contactInfo.my_phone">电话: {{contactInfo.my_phone}}</div>
+          <div v-show="contactInfo.my_fax">传真: {{contactInfo.my_fax}}</div>
+          <div v-show="contactInfo.my_email">邮箱: {{contactInfo.my_email}}</div>
+          <div v-show="contactInfo.my_tel">手机: {{contactInfo.my_tel}}</div>
         </div>
         <div style="text-align: center;">
           <img :src="contactInfo.my_qrcode" />
