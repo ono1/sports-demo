@@ -17,7 +17,7 @@
                 >{{item.label}}</span>
               <i :style="{background: item.id === currentId ? '#333333' : '#ffffff'}"></i>
             </div>
-            <div class="qybox-menu--horizontal" v-show="item.id === 1 && mouseId === 1 && layoutCategory">
+            <div class="qybox-menu--horizontal" v-show="item.id === 1 && mouseId === 1">
               <ul class="qybox-menu--popup">
                 <li class="qybox-submenu-item" v-for="child of tabList" :key="child.id">
                   <div
